@@ -1,3 +1,9 @@
+#Pema Lhendup
+#02230221
+#1 ICE
+#chatgpt(https://chatgpt.com/?oai-dm=1)
+#copilot
+#wb3(https://www.w3schools.com/python/)
 import random  # Importing the random module for generating random numbers
 import os  # Importing the os module for interacting with the operating system
 
@@ -110,7 +116,7 @@ def create_account():
         account_holder_name = input("Enter owner name: ")  # Taking input for owner name
         account = PersonalAccount(account_number, password, owner_name=account_holder_name)  # Creating PersonalAccount object
     else:
-        print("Invalid account type.")  # Printing message for invalid account type
+        print("Invalid Account Type")  # Printing message for invalid account type
         return None
     
     accounts = load_accounts()  # Loading existing accounts
@@ -135,9 +141,9 @@ def delete_account(account, accounts):
     if account.account_number in accounts:  # Checking if account exists in accounts dictionary
         del accounts[account.account_number]  # Deleting account from accounts dictionary
         save_accounts(accounts)  # Saving updated accounts to file
-        print("Account deleted successfully.")  # Printing deletion confirmation
+        print("Account Deleted Successfully.")  # Printing deletion confirmation
     else:
-        print("Account not found.")  # Printing message if account not found
+        print("Account Not Found.")  # Printing message if account not found
 
 # Function to change account details
 def change_account_details(account, accounts):
@@ -154,19 +160,19 @@ def change_account_details(account, accounts):
             accounts[new_account_number] = account  # Adding updated account to accounts dictionary
             del accounts[old_account_number]  # Deleting old account from accounts dictionary
             save_accounts(accounts)  # Saving updated accounts to file
-            print("Account number changed successfully.")  # Printing success message
+            print("Account Number Changed Successfully.")  # Printing success message
     elif choice == '2':  # Checking if choice is to change password
         new_password = input("Enter new password: ")  # Taking input for new password
         account.update_password(new_password)  # Updating account password
         save_accounts(accounts)  # Saving updated accounts to file
-        print("Password changed successfully.")  # Printing success message
+        print("Password Changed Successfully.")  # Printing success message
     else:
-        print("Invalid choice.")  # Printing message for invalid choice
+        print("Invalid Choice.")  # Printing message for invalid choice
 
 # Main function containing the program logic
 def main():
     while True:
-        print("\n1. Create Account\n2. Login\n3. Exit")  # Printing main menu options
+        print("\n1. Create Account\n2. Login\n3. Exit")  # Printing main menu options for user to choose the option
         choice = input("Enter choice: ")  # Taking input for choice
 
         if choice == '1':  # Checking if choice is to create an account
@@ -177,32 +183,32 @@ def main():
             if account:
                 while True:
                     print("\n1. Deposit\n2. Withdraw\n3. Check Balance\n4. Transfer\n5. Delete Account\n6. Change Account Details\n7. Logout")  # Printing transaction options
-                    trans_choice = input("Enter choice: ")  # Taking input for transaction choice
+                    trans_choice = input("Enter choice: ")  # Taking user input for transaction choice
 
                     if trans_choice == '1':  # Checking if choice is to deposit money
-                        amount = float(input("Enter amount to deposit: "))  # Taking input for deposit amount
+                        amount = float(input("Enter Amount To Deposit: "))  # Taking input for deposit amount
                         account.deposit(amount)  # Calling deposit method
                         save_accounts(accounts)  # Saving updated accounts to file
                     elif trans_choice == '2':  # Checking if choice is to withdraw money
-                        amount = float(input("Enter amount to withdraw: "))  # Taking input for withdrawal amount
+                        amount = float(input("Enter Amount To Withdraw: "))  # Taking input for withdrawal amount
                         account.withdraw(amount)  # Calling withdraw method
                         save_accounts(accounts)  # Saving updated accounts to file
                     elif trans_choice == '3':  # Checking if choice is to check balance
                         print(f"Balance: Ngultrum {account.check_balance()}")  # Calling check_balance method and printing balance
                     elif trans_choice == '4':  # Checking if choice is to transfer money
-                        recipient_number = input("Enter recipient account number: ")  # Taking input for recipient account number
+                        recipient_number = input("Enter Recipient Account Number: ")  # Taking input for recipient account number
                         recipient = accounts.get(recipient_number)  # Retrieving recipient account from accounts dictionary
                         if recipient:  # Checking if recipient account exists
-                            print(f"Recipient account details: {recipient.get_account_details()}")  # Printing recipient account details
-                            confirm = input("Do you want to proceed with the transfer? (yes/no): ").lower()  # Taking input for confirmation
+                            print(f"Recipient Account Details: {recipient.get_account_details()}")  # Printing recipient account details
+                            confirm = input("Do you really want to proceed with the transfer? (yes/no): ").lower()  # Taking input for confirmation
                             if confirm == 'yes':  # Checking if confirmed
                                 amount = float(input("Enter amount to transfer: "))  # Taking input for transfer amount
                                 account.transfer(amount, recipient)  # Calling transfer method
                                 save_accounts(accounts)  # Saving updated accounts to file
                             else:
-                                print("Transfer cancelled.")  # Printing cancellation message
+                                print("Transfer Failed.")  # Printing cancellation message
                         else:
-                            print("Recipient account does not exist.")  # Printing message if recipient account not found
+                            print("Sorry, Recipient Account Does Not Found.")  # Printing message if recipient account not found
                     elif trans_choice == '5':  # Checking if choice is to delete account
                         delete_account(account, accounts)  # Calling delete_account function
                         break  # Exiting transaction loop after account deletion
@@ -210,12 +216,12 @@ def main():
                         change_account_details(account, accounts)  # Calling change_account_details function
                     elif trans_choice == '7':  # Checking if choice is to logout
                         save_accounts(accounts)  # Saving updated accounts to file
-                        print("Logged out.")  # Printing logout message
+                        print("Logged Out.")  # Printing logout message
                         break  # Exiting transaction loop
         elif choice == '3':  # Checking if choice is to exit
             break  # Exiting main loop
         else:
-            print("Invalid choice. Try again.")  # Printing message for invalid choice
+            print("Invalid Choice. Please Try Again.")  # Printing message for invalid choice
 
 # Entry point for the program
 if __name__ == "__main__":
